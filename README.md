@@ -10,3 +10,5 @@ Capstone 1 project analyzing yelp user, review and business data
 ## Methods
 Plotting geo-locations -- can convert coordinates into numpy array and then just scatter plot
 Foliun
+
+FONT SIZE!!!
