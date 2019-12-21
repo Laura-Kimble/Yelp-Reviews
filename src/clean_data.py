@@ -16,12 +16,6 @@ import datetime as dt
 def set_up_spark_env(appname):
     ''' 
     Set up spark environment and return the spark session and context.
-     
-    Parameters: 
-        appname (str): A name for the spark context
-
-    Returns:
-        spark, sc: Spark session and spark context
     '''
 
     spark = (ps.sql.SparkSession.builder 
@@ -80,18 +74,12 @@ def flatten_df(nested_df):
     return flat_df
 
     
-
-
-# if df.attribute == 'struc':
-    # new_table = spark.sql('''
-#                     SELECT id, things.field AS field
-#                     FROM table
-#                       LATERAL VIEW explode(struc_attribute.thing) AS things
-# ''')
-
+# Need to clean up some fields in the flat df... nulls, 'True'/'False' strings to boolean..
+# Ambience, BusinessParking, etc, are still stored as strings that look like dicts in a single col: {'romantic': False, 'classy':...}
 
 if __name__ == '__main__':
     spark, sc = set_up_spark_env('yelp_review_analysis')
     business_df = read_json_to_df('../../data/yelp_dataset/business.json', 'business_df')
     business_df_flat = flatten_df(business_df)
+    business_df_flat.createOrReplaceTempView('business_df_flat')
 
