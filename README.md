@@ -125,6 +125,64 @@ root
  |-- stars: double (nullable = true)
  |-- state: string (nullable = true)
 
+
+USERS:
+1637138 users
+
+user_id, average_stars, elite, review_count, yelping_since
+
+root
+ |-- average_stars: double (nullable = true)
+ |-- compliment_cool: long (nullable = true)
+ |-- compliment_cute: long (nullable = true)
+ |-- compliment_funny: long (nullable = true)
+ |-- compliment_hot: long (nullable = true)
+ |-- compliment_list: long (nullable = true)
+ |-- compliment_more: long (nullable = true)
+ |-- compliment_note: long (nullable = true)
+ |-- compliment_photos: long (nullable = true)
+ |-- compliment_plain: long (nullable = true)
+ |-- compliment_profile: long (nullable = true)
+ |-- compliment_writer: long (nullable = true)
+ |-- cool: long (nullable = true)
+ |-- elite: string (nullable = true)
+ |-- fans: long (nullable = true)
+ |-- friends: string (nullable = true)
+ |-- funny: long (nullable = true)
+ |-- name: string (nullable = true)
+ |-- review_count: long (nullable = true)
+ |-- useful: long (nullable = true)
+ |-- user_id: string (nullable = true)
+ |-- yelping_since: string (nullable = true)
+
+REVIEWS:
+ids, stars, text, date
+
+root
+ |-- business_id: string (nullable = true)
+ |-- cool: long (nullable = true)
+ |-- date: string (nullable = true)
+ |-- funny: long (nullable = true)
+ |-- review_id: string (nullable = true)
+ |-- stars: double (nullable = true)
+ |-- text: string (nullable = true)
+ |-- useful: long (nullable = true)
+ |-- user_id: string (nullable = true)
+
+First review
++-------------------+
+|          min(date)|
++-------------------+
+|2004-10-12 10:13:32|
++-------------------+
+
+Most recent review:
++-------------------+
+|          max(date)|
++-------------------+
+|2018-11-14 18:13:26|
++-------------------+
+
 ## Initial Observations
 
 ## Methods
