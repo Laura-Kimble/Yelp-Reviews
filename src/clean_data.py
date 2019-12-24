@@ -79,7 +79,11 @@ def flatten_df(nested_df):
 
 if __name__ == '__main__':
     spark, sc = set_up_spark_env('yelp_review_analysis')
+
     business_df = read_json_to_df('../../data/yelp_dataset/business.json', 'business_df')
     business_df_flat = flatten_df(business_df)
     business_df_flat.createOrReplaceTempView('business_df_flat')
+
+    user_df = read_json_to_df('../../data/yelp_dataset/user.json', 'user_df')
+    review_df = read_json_to_df('../../data/yelp_dataset/review.json', 'review_df')
 
