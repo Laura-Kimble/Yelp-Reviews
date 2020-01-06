@@ -8,25 +8,26 @@ class BusinessDF(pd.DataFrame):
         super().__init__(df)
 
 
-    # def plot_hist(self, col_name, view_by_col=''):
-    #     ''' Plot histrograms of the given col_name, one for each value of the view_by_col
-    #     '''
-    #     if view_by:
-    #         num_plots = self[view_by].get_counts
+    def plot_hist(self, col_name, view_by_col=''):
+        ''' Plot histrograms of the given col_name, one for each value of the view_by_col
+        '''
+        if view_by_col:
+            num_plots = len(self[view_by_col].unique())
+            fig, axs = plt.subplots(num_plots, 1, figsize=(10, 4))
 
+            for idx, val in enumerate(self[view_by_col].unique()):
+                data = self[self[view_by_col]==val][col_name]
+                ax = axs[idx]
+                ax.hist(data, label=f'{view_by_col} = {val}')
+                ax.set_title(f'{col_name}')
+                ax.legend()
 
-    #     else num_plots = 1
+        else:
+            fig, ax = plt.subplots(1, 1, figsize=(4, 8))
+            ax.hist(self[col_name], label=f'{col_name}')
+            ax.legend()
 
-    #     fig, ax = plt.subplots(num_plots, 1, figsize=(4, 10))
-
-    #     true_vals = df[df[view_by]=='True'][col_name]
-    #     false_vals = df[df[view_by]=='False'][col_name]
-
-    #     ax.hist(true_vals, color='blue', label='True')
-    #     ax.hist(false_vals, color='red', label='False')
-
-    #     ax.set_title(f'{col_name} for {view_by}')
-    #     ax.legend()
+        plt.tight_layout()
 
 
 if __name__ == '__main__':
