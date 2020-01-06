@@ -85,5 +85,7 @@ if __name__ == '__main__':
     business_df_flat.createOrReplaceTempView('business_df_flat')
 
     user_df = read_json_to_df('../../data/yelp_dataset/user.json', 'user_df')
+
     review_df = read_json_to_df('../../data/yelp_dataset/review.json', 'review_df')
+    review_df = review_df.withColumn('date', F.to_date(review_df.date, 'yyyy-MM-dd'))
 
