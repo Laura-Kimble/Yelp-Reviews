@@ -1,17 +1,15 @@
 '''
-Functions and code to import .json files to spark rdd/dataframes,
-flatten .json schema into flat rdd dataframe files,
-then save those files as csv?
+Functions and code to import .json files to spark dataframes,
+flatten .json schema into flat dataframe files,
+and convert to pandas dataframes.
 
-Maybe import csv then into a postgres database
-SQL queries on the postgres db into pandas df's to do analysis and plotting.
+Do this for the Yelp data files: businesses, reviews, and users.
 '''
 
 import pyspark as ps
 import json as js
 import pyspark.sql.functions as F
 from pyspark.sql.types import *
-import datetime as dt
 
 def set_up_spark_env(appname):
     ''' 
@@ -27,13 +25,12 @@ def set_up_spark_env(appname):
     return spark, sc
 
 
-def read_json_to_df(filename, df_name):
+def read_json_to_df(filename):
     '''
-    Read in .json file, convert to a dataframe, and register a temp table for spark sql querying.
+    Read in .json file, convert to a spark dataframe.
 
     Parameters: 
         filename (str): Path and name to .json file
-        df_name(str): Name to give the new dataframe and temp table
 
     Returns:
         A spark dataframe
@@ -41,7 +38,7 @@ def read_json_to_df(filename, df_name):
 
     # rdd = sc.textFile(filename)
     df = spark.read.json(filename)
-    df.createOrReplaceTempView(df_name)
+    # df.createOrReplaceTempView(df_name)
 
     return df
     
@@ -74,41 +71,23 @@ def flatten_df(nested_df):
     return flat_df
 
 
-def subset_businesses(df, n=100):
-    '''
-    Obtain a subset of the yelp businesses that have at least 'n' reviews.
-
-    Parameters:
-        df: Dataframe of yelp businesses with a 'review_count' column
-        n: Integer for cutoff to only select businesses with at least n reviews
-
-    Returns:
-        subset_df (spark dataframe): Subset of all of the businesses
-    '''
-
-    subset_df = spark.sql('''
-                            SELECT *
-                            FROM df
-                            WHERE review_count >= n
-    ''')
-
-    return subset_df
-    
-
 # Need to clean up some fields in the flat df... nulls, 'True'/'False' strings to boolean..
 # Ambience, BusinessParking, etc, are still stored as strings that look like dicts in a single col: {'romantic': False, 'classy':...}
 
 if __name__ == '__main__':
     spark, sc = set_up_spark_env('yelp_review_analysis')
 
+    # Read in json files and flatten the businesses df
     business_df = read_json_to_df('../../data/yelp_dataset/business.json', 'business_df')
     business_df_flat = flatten_df(business_df)
-    business_df_flat.createOrReplaceTempView('business_df_flat')
-    business_df_flat_subset = subset_businesses(business_df_flat, n=100)
-    business_df_flat_subset.createOrReplaceTempView('business_df_flat_subset')
 
     user_df = read_json_to_df('../../data/yelp_dataset/user.json', 'user_df')
 
     review_df = read_json_to_df('../../data/yelp_dataset/review.json', 'review_df')
     review_df = review_df.withColumn('date', F.to_date(review_df.date, 'yyyy-MM-dd'))
+
+    # Convert spark df's to pandas df's for plotting
+    businesses = business_df_flat.select('*').toPandas()
+    users = user_df.select('*').toPandas()
+    reviews = review_df.select('*').toPandas()
 

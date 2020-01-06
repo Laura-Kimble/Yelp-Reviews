@@ -19,7 +19,3 @@ def plot_hist(df, col_name, view_by):
 
 if __name__ == '__main__':
 
-    # Convert all spark df's to pandas df's for plotting
-    businesses = business_df_flat_subset.select('*').toPandas()
-    users = user_df.select('*').toPandas()
-    reviews = review_df.select('*').toPandas()
