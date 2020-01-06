@@ -101,4 +101,5 @@ if __name__ == '__main__':
 
 
     businesses_df = bd.BusinessDF(businesses)
+    businesses_df['Restaurant'] = businesses_df['categories'].str.contains(pat='Restaurant')
 

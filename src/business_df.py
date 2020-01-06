@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-plt.style.use('ggplot')
+plt.style.use('fivethirtyeight')
 
 class BusinessDF(pd.DataFrame):
     def __init__(self, df):

@@ -8,8 +8,10 @@ Capstone 1 project analyzing yelp user, review and business data
 .json files -- too big to go into GitHub
 
 Businesses:
-192609 businesses
+192,609 businesses
 Across 10 metro areas in the US and Canada... 1258 distinct city, state combinations
+
+Subsetted businesses to ones with at least 100 reviews.  N = 13,124
 
 Reviews:
 Flat schema (every field is at top level)
