@@ -30,3 +30,16 @@ fig = ax.figure
 fig.set_size_inches(8, 5)
 fig.tight_layout(pad=1)
 fig.savefig('../images/Overall_reviewCounts_hist.png')
+
+
+# Scatter plot of the average star rating vs. number of reviews (for businesses with between 100-5000 reviews)
+fig, ax = plt.subplots()
+data = businesses_df[businesses_df['review_count']<5000]
+x = data['stars']
+y = data['review_count']
+ax.scatter(x, y)
+ax.set_xlabel('avg star rating')
+ax.set_ylabel('number of reviews')
+title = 'Avg. Star Rating vs. Number of Reviews'
+ax.set_title(title)
+fig.savefig(f'../images/{title}.png')
