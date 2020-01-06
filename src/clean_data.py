@@ -73,7 +73,28 @@ def flatten_df(nested_df):
     flat_df = nested_df.select(new_col_names)
     return flat_df
 
+
+def subset_businesses(df, n=100):
+    '''
+    Obtain a subset of the yelp businesses that have at least 'n' reviews.
+
+    Parameters:
+        df: Dataframe of yelp businesses with a 'review_count' column
+        n: Integer for cutoff to only select businesses with at least n reviews
+
+    Returns:
+        subset_df (spark dataframe): Subset of all of the businesses
+    '''
+
+    subset_df = spark.sql('''
+                            SELECT *
+                            FROM df
+                            WHERE review_count >= n
+    ''')
+
+    return subset_df
     
+
 # Need to clean up some fields in the flat df... nulls, 'True'/'False' strings to boolean..
 # Ambience, BusinessParking, etc, are still stored as strings that look like dicts in a single col: {'romantic': False, 'classy':...}
 
@@ -83,6 +104,8 @@ if __name__ == '__main__':
     business_df = read_json_to_df('../../data/yelp_dataset/business.json', 'business_df')
     business_df_flat = flatten_df(business_df)
     business_df_flat.createOrReplaceTempView('business_df_flat')
+    business_df_flat_subset = subset_businesses(business_df_flat, n=100)
+    business_df_flat_subset.createOrReplaceTempView('business_df_flat_subset')
 
     user_df = read_json_to_df('../../data/yelp_dataset/user.json', 'user_df')
 
