@@ -128,6 +128,8 @@ root
  |-- state: string (nullable = true)
 
 
+<div style="text-align:center"><img src="images/Overall_stars_hist.png" /></div>
+
 USERS:
 1637138 users
 
