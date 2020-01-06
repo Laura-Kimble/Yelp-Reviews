@@ -28,7 +28,7 @@ class BusinessDF(pd.DataFrame):
         ax.barh(tickLocations, data)
         ax.set_yticks(ticks=tickLocations)
         ax.set_yticklabels(labels)
-        title = f'{col_name}: Value counts'
+        title = f'Number of Businesses by {col_name}'
         ax.set_title(title)
         plt.gca().invert_yaxis()
 

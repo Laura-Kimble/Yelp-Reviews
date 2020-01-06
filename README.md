@@ -132,7 +132,7 @@ root
 
 <div style="text-align:center"><img src="images/Overall_reviewCounts_hist.png" /></div>
 
-<div style="text-align:center"><img src="images/city: Value counts.png" /></div>
+<div style="text-align:center"><img src="images/Number of Businesses by city.png" /></div>
 
 <div style="text-align:center"><img src="images/Avg. Star Rating vs. Number of Reviews.png" /></div>
 
