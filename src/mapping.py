@@ -62,3 +62,5 @@ create_heatmap_layer(chinese_df, vegas_map, 'Chinese restaurants', max_val=max_v
 # add toggle controls for the layers
 folium.LayerControl().add_to(vegas_map)
 
+vegas_map.save('../images/vegas_map.html')
+
