@@ -140,6 +140,8 @@ root
 If you want to use your bitcoin, go to Vegas.
 <div style="text-align:center"><img src="images/Businesses that Accept Bitcoin by City.png" /></div>
 
+<div style="text-align:center"><img src="images/vegas_businesses_heatmap.png" /></div>
+
 USERS:
 1637138 users
 
