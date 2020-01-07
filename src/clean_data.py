@@ -103,3 +103,6 @@ if __name__ == '__main__':
     businesses_df = bd.BusinessDF(businesses)
     businesses_df['Restaurant'] = businesses_df['categories'].str.contains(pat='Restaurant')
 
+    # save to pickle file
+    businesses_df.to_pickle('../data/pickled_businesses_df')
+

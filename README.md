@@ -136,6 +136,10 @@ root
 
 <div style="text-align:center"><img src="images/Avg. Star Rating vs. Number of Reviews.png" /></div>
 
+
+If you want to use your bitcoin, go to Vegas.
+<div style="text-align:center"><img src="images/Businesses that Accept Bitcoin by City.png" /></div>
+
 USERS:
 1637138 users
 

@@ -43,3 +43,38 @@ ax.set_ylabel('number of reviews')
 title = 'Avg. Star Rating vs. Number of Reviews'
 ax.set_title(title)
 fig.savefig(f'../images/{title}.png')
+
+
+# Plot count of businesses that accept bitcoin, by city
+col_name = 'city'
+col, vals = ('BusinessAcceptsBitcoin', ['True'])
+filtered = businesses_df[businesses_df[col].isin(vals)]
+legend_label = f'count of businesses where {col} is in {vals}'
+
+fig, ax = plt.subplots(1, 1, figsize=(10, 6))
+data = filtered[col_name].value_counts()[0:10]
+labels = data.index
+N = len(labels)
+tick_locations = np.arange(N)
+
+restaurant_counts = []
+non_restaurant_counts = []
+
+for lab in labels:
+    restaurant_data = filtered[(filtered['Restaurant']==True) & (filtered[col_name]==lab)]
+    non_restaurant_data = filtered[(filtered['Restaurant']==False) & (filtered[col_name]==lab)]
+    restaurant_counts.append(len(restaurant_data))
+    non_restaurant_counts.append(len(non_restaurant_data))
+        
+ax.barh(tick_locations, restaurant_counts, label='Restaurants')
+ax.barh(tick_locations, non_restaurant_counts, label='Not Restaurants', left=restaurant_counts)
+ax.set_yticks(ticks=tick_locations)
+ax.set_yticklabels(labels)
+ax.set_xticks(np.arange(0, max(restaurant_counts) + max(non_restaurant_counts) + 1, step=5))
+ax.set_xlabel('number of businesses')
+ax.set_ylabel(f'{col_name}')
+title = f'Businesses that Accept Bitcoin by {col_name}'
+ax.set_title(title)
+ax.legend()
+plt.gca().invert_yaxis()
+fig.savefig(f'../images/{title}.png')

@@ -34,10 +34,10 @@ class BusinessDF(pd.DataFrame):
         data = filtered[col_name].value_counts()[0:10]
         labels = data.index
         N = len(labels)
-        tickLocations = np.arange(N)
+        tick_locations = np.arange(N)
         
-        ax.barh(tickLocations, data, label=legend_label)
-        ax.set_yticks(ticks=tickLocations)
+        ax.barh(tick_locations, data, label=legend_label)
+        ax.set_yticks(ticks=tick_locations)
         ax.set_yticklabels(labels)
         ax.set_xlabel('number of businesses')
         ax.set_ylabel(f'{col_name}')
@@ -148,5 +148,5 @@ class BusinessDF(pd.DataFrame):
             fig.savefig(f'../images/{title}.png')
 
 
-# if __name__ == '__main__':
-#     businesses = BusinessDF(businesses)
+if __name__ == '__main__':
+    businesses_df = pd.read_pickle('../data/pickled_businesses_df')
