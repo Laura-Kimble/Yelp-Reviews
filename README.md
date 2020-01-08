@@ -134,6 +134,8 @@ root
 
 <div style="text-align:center"><img src="images/Number of Businesses by city.png" /></div>
 
+<div style="text-align:center"><img src="images/10_metro_areas_heatmap.png" /></div>
+
 <div style="text-align:center"><img src="images/Avg. Star Rating vs. Number of Reviews.png" /></div>
 
 

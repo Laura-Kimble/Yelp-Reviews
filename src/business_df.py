@@ -8,6 +8,8 @@ plt.rcParams.update({'font.size': 14})
 class BusinessDF(pd.DataFrame):
     def __init__(self, df):
         super().__init__(df)
+        self.stars_col = 'stars'
+        self.review_count_col = 'review_count'
 
 
     def plot_value_counts_bar(self, col_name, filter_by=(), save=False):
@@ -77,9 +79,10 @@ class BusinessDF(pd.DataFrame):
             fig, axs = plt.subplots(num_plots, 1, sharex=True, figsize=(8, 4 * num_plots))
 
             for idx, label in enumerate(np.array(labels)):
-                data = filtered[filtered[view_by_col]==label]['stars']
+                data = filtered[filtered[view_by_col]==label]
+                stars_data = data[self.stars_col]
                 ax = axs[idx]
-                ax.hist(data, bins=8, label=legend_label)
+                ax.hist(stars_data, bins=8, label=legend_label)
                 ax.set_xlabel('avg. star rating')
                 ax.set_title(f'{label}')
                 ax.legend()
@@ -88,7 +91,8 @@ class BusinessDF(pd.DataFrame):
 
         else:
             fig, ax = plt.subplots(1, 1, figsize=(8, 4))
-            ax.hist(filtered['stars'], bins=8)
+            stars_data = filtered[self.stars_col]
+            ax.hist(stars_data, bins=8)
             title = 'Star Ratings Overall'
             ax.set_title(title)
 
@@ -111,7 +115,7 @@ class BusinessDF(pd.DataFrame):
             cutoff (int): Only include businesses with fewer reviews than the cutoff in the plot, for viewability.
             save (boolean): If true, will save the figure as a png file in the images folder.
         '''
-        cutoff_data = self[self['review_count'] < cutoff]
+        cutoff_data = self[self[self.review_count_col] < cutoff]
 
         if filter_by:
             col, vals = filter_by
@@ -127,9 +131,10 @@ class BusinessDF(pd.DataFrame):
             fig, axs = plt.subplots(num_plots, 1, sharex=True, figsize=(8, 4 * num_plots))
 
             for idx, label in enumerate(np.array(labels)):
-                data = filtered[filtered[view_by_col]==label]['review_count']
+                data = filtered[filtered[view_by_col]==label]
+                review_count_data = data[self.review_count_col]
                 ax = axs[idx]
-                ax.hist(data, bins=20, label=legend_label)
+                ax.hist(review_count_data, bins=20, label=legend_label)
                 ax.set_xlabel('review counts')
                 ax.set_title(f'{label}')
                 ax.legend()
@@ -138,7 +143,8 @@ class BusinessDF(pd.DataFrame):
 
         else:
             fig, ax = plt.subplots(1, 1, figsize=(8, 4))
-            ax.hist(filtered['review_count'], bins=20)
+            review_count_data = filtered[self.review_count_col]
+            ax.hist(review_count_data, bins=20)
             title = 'Review Counts Overall'
             ax.set_title(title)
 

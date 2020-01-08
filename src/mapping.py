@@ -16,9 +16,9 @@ default_max_val = 30  # default value to use as maximum point intensity in the h
 # Set up Charlotte map data
 charlotte_df = businesses_df[businesses_df['city']=='Charlotte']
 
-# base_map = folium.Map(location=[39.73782,-104.971338],
-#                         zoom_start=4,
-#                         tiles="Cartodbpositron")
+base_map = folium.Map(location=[39.73782,-104.971338],
+                        zoom_start=4,
+                        tiles="Cartodbpositron")
 
 
 vegas_map = folium.Map(location=[36.1699, -115.1398],
@@ -80,8 +80,10 @@ def create_dots_layer(df, base_map, layer_name, color):
     base_map.add_child(feature_map)
 
 
-### Create map layers for Vegas
+# Create overall heatmap for all businesses in dataset
+create_heatmap_layer(businesses_df, base_map, 'all businesses')
 
+# Create map layers for Vegas
 create_heatmap_layer(vegas_df, vegas_map, 'all businesses')
 
 vegas_five_stars_df = vegas_df[vegas_df['stars']==5.0]
@@ -93,7 +95,7 @@ chinese_df = vegas_df[vegas_df['categories'].str.contains(pat='Chinese')]
 create_heatmap_layer(chinese_df, vegas_map, 'Chinese restaurants')
 
 
-### Create map layers for Charlotte
+# Create map layers for Charlotte
 create_dots_layer(charlotte_df, charlotte_map, 'all businesses', 'black')
 
 charlotte_five_stars_df = charlotte_df[charlotte_df['stars']==5.0]
@@ -104,5 +106,6 @@ create_dots_layer(charlotte_five_stars_df, charlotte_map, '5-star businesses', '
 folium.LayerControl().add_to(vegas_map)
 folium.LayerControl().add_to(charlotte_map)
 
+base_map.save('../images/base_map.html')
 vegas_map.save('../images/vegas_map.html')
 charlotte_map.save('../images/charlotte_map.html')
