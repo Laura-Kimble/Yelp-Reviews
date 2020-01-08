@@ -20,7 +20,7 @@ def plot_barh(x, y, title='', x_label='', y_label='', legend_label='', save=Fals
 if __name__ == '__main__':
     #Load the pickeled dataframes
     businesses_df = pd.read_pickle('../data/pickled_businesses_df')
-    category_counts = pd.read_pickle('../data/category_counts')
+    category_counts = pd.read_pickle('../data/pickled_category_counts')
 
     # Plot top 10 category frequency counts
     x = category_counts['elem'][0:10]

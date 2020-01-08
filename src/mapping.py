@@ -6,7 +6,9 @@ from folium.plugins import HeatMap
 
 #Load the pickeled dataframes
 businesses_df = pd.read_pickle('../data/pickled_businesses_df')
-category_counts = pd.read_pickle('../data/category_counts')
+category_counts = pd.read_pickle('../data/pickled_category_counts')
+
+top_4_cats = list(category_counts['elem'][0:4])
 
 # Set up variables for Vegas map
 vegas_df = businesses_df[businesses_df['city']=='Las Vegas']
@@ -55,7 +57,17 @@ def create_heatmap_layer(df, base_map, layer_name, max_val=default_max_val):
     base_map.add_child(feature_map)
 
 
-def create_dots_layer(df, base_map, layer_name, color):
+def create_multiple_dots_layers(df, base_map, layer_names, col_name):
+
+    colors = ['red', 'blue', 'green', 'purple', 'orange', 'black', 'beige']
+    
+    for idx, layer in enumerate(layer_names):
+        layer_df = df[df[col_name].str.contains(pat=layer)]
+        color = colors[idx % 7]
+        create_dots_layer(layer_df, base_map, layer, color=color)
+        
+
+def create_dots_layer(df, base_map, layer_name, color='black'):
     '''
     Create a dots layer onto the base map, with the lat/lon in the dataframe.
     Opacity of dot is the business star rating.
@@ -102,11 +114,11 @@ if __name__ == '__main__':
 
 
     # Create map layers for Charlotte
-    create_dots_layer(charlotte_df, charlotte_map, 'all businesses', 'black')
+    # create_dots_layer(charlotte_df, charlotte_map, 'all businesses', 'black')
 
-    charlotte_restaurants_df = charlotte_df[charlotte_df['Restaurant']==True]
-    create_dots_layer(charlotte_restaurants_df, charlotte_map, 'Restaurants', 'red')
-
+    # charlotte_restaurants_df = charlotte_df[charlotte_df['Restaurant']==True]
+    # create_dots_layer(charlotte_restaurants_df, charlotte_map, 'Restaurants', 'red')
+    create_multiple_dots_layers(charlotte_df, charlotte_map, top_4_cats, 'categories')
 
     # add toggle controls for the layers
     folium.LayerControl().add_to(vegas_map)

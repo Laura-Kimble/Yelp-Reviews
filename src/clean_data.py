@@ -67,7 +67,7 @@ def get_counts_in_string_col(df, col_name):
     df_col = df.select(df[col_name].alias('string_col'))
     df_col.createOrReplaceTempView('df_col')
     df_list_col = spark.sql('''
-                        SELECT split(lower(string_col), ',') as lst_col
+                        SELECT split(string_col, ',') as lst_col
                         FROM df_col
                             ''')
 

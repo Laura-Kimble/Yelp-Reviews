@@ -146,6 +146,8 @@ If you want to use your bitcoin, go to Vegas.
 
 <div style="text-align:center"><img src="images/vegas_businesses_heatmap.png" /></div>
 
+<div style="text-align:center"><img src="images/Charlotte_businesses.png" /></div>
+
 USERS:
 1637138 users
 
