@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 plt.rcParams.update({'font.size': 14})
+import yelp_plots as yplt
 
 
 class BusinessDF(pd.DataFrame):
@@ -32,24 +33,14 @@ class BusinessDF(pd.DataFrame):
             filtered = self
             legend_label = 'count of businesses'
 
-        fig, ax = plt.subplots(1, 1, figsize=(10, 6))
+
         data = filtered[col_name].value_counts()[0:10]
         labels = data.index
-        N = len(labels)
-        tick_locations = np.arange(N)
-        
-        ax.barh(tick_locations, data, label=legend_label)
-        ax.set_yticks(ticks=tick_locations)
-        ax.set_yticklabels(labels)
-        ax.set_xlabel('number of businesses')
-        ax.set_ylabel(f'{col_name}')
         title = f'Number of Businesses by {col_name}'
-        ax.set_title(title)
-        ax.legend()
-        plt.gca().invert_yaxis()
+        x_label = 'number of businesses'
+        y_label = f'{col_name}'
 
-        if save:
-            fig.savefig(f'../images/{title}.png')
+        yplt.plot_barh(labels, data, title=title, x_label=x_label, y_label=y_label, legend_label=legend_label, save=save)
         
 
     def plot_stars_hist(self, view_by_col='', filter_by=(), limit=10, save=False):

@@ -128,6 +128,8 @@ root
  |-- state: string (nullable = true)
 
 
+<div style="text-align:center"><img src="images/Top 10 business categories.png" /></div>
+
 <div style="text-align:center"><img src="images/Overall_stars_hist.png" /></div>
 
 <div style="text-align:center"><img src="images/Overall_reviewCounts_hist.png" /></div>

@@ -5,12 +5,13 @@ plt.style.use('ggplot')
 plt.rcParams.update({'font.size': 14})
 
 
-def plot_barh(x, y, title='', x_label='', y_label='', save=False):
+def plot_barh(x, y, title='', x_label='', y_label='', legend_label='', save=False):
     fig, ax = plt.subplots()
     ax.barh(x, y)
     ax.set_title(title)
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
+    ax.legend()
     plt.gca().invert_yaxis()
     if save:
         fig.savefig(f'../images/{title}.png')
@@ -21,7 +22,11 @@ if __name__ == '__main__':
     businesses_df = pd.read_pickle('../data/pickled_businesses_df')
     category_counts = pd.read_pickle('../data/category_counts')
 
-
+    # Plot top 10 category frequency counts
+    x = category_counts['elem'][0:10]
+    y = category_counts['count'][0:10]
+    title('Top 10 business categories')
+    plot_barh(x, y, title=title, save=True)
 
     # Plot overall star ratings hist
     ax = businesses_df['stars'].hist(bins=8)
