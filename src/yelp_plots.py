@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-%matplotlib inline
 import pandas as pd
 plt.style.use('ggplot')
 plt.rcParams.update({'font.size': 14})
@@ -13,6 +12,7 @@ def plot_barh(x, y, title='', x_label='', y_label='', legend_label='', save=Fals
     ax.set_ylabel(y_label)
     ax.legend()
     plt.gca().invert_yaxis()
+    plt.tight_layout(pad=2)
     if save:
         fig.savefig(f'../images/{title}.png')
 
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     # Plot top 10 category frequency counts
     x = category_counts['elem'][0:10]
     y = category_counts['count'][0:10]
-    title('Top 10 business categories')
+    title = 'Top 10 business categories'
     plot_barh(x, y, title=title, save=True)
 
     # Plot overall star ratings hist
@@ -65,6 +65,7 @@ if __name__ == '__main__':
     ax.set_ylabel('number of reviews')
     title = 'Avg. Star Rating vs. Number of Reviews'
     ax.set_title(title)
+    plt.tight_layout(pad=2)
     fig.savefig(f'../images/{title}.png')
 
 

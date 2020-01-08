@@ -128,9 +128,10 @@ root
  |-- state: string (nullable = true)
 
 
-<div style="text-align:center"><img src="images/Top 10 business categories.png" /></div>
 
-<div style="text-align:center"><img src="images/Overall_stars_hist.png" /></div>
+## Getting a sense of the businesses in the dataset - type, locations, # reviews
+
+<div style="text-align:center"><img src="images/Top 10 business categories.png" /></div>
 
 <div style="text-align:center"><img src="images/Overall_reviewCounts_hist.png" /></div>
 
@@ -138,15 +139,28 @@ root
 
 <div style="text-align:center"><img src="images/10_metro_areas_heatmap.png" /></div>
 
+
+## Looking at average star ratings
+
+<div style="text-align:center"><img src="images/Overall_stars_hist.png" /></div>
+
+<div style="text-align:center"><img src="images/Star Distributions for Top 5 Cities violin.png" /></div>
+
+<div style="text-align:center"><img src="images/Star Ratings by Restaurant.png" /></div>
+
+
 <div style="text-align:center"><img src="images/Avg. Star Rating vs. Number of Reviews.png" /></div>
 
 
 If you want to use your bitcoin, go to Vegas.
 <div style="text-align:center"><img src="images/Businesses that Accept Bitcoin by City.png" /></div>
 
+
+## Mapping businesses
 <div style="text-align:center"><img src="images/vegas_businesses_heatmap.png" /></div>
 
 <div style="text-align:center"><img src="images/Charlotte_businesses.png" /></div>
+
 
 USERS:
 1637138 users
