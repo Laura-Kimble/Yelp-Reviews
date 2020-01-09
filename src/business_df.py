@@ -22,6 +22,7 @@ class YelpDF(pd.DataFrame):
             filter_by (tuple): Used to filter the data for plotting, e.g., filter_by=('Restaurant', [True]) will
                 only plot businesses where the Restaurant column=True.  First value of the filter_by tuple is the
                 column name (string) to filter on; second value is a list of values to keep.
+            color (str): Color to pass into the barh plotting function to color the bars.
             save (boolean): If true, will save the figure as a png file in the images folder.
         '''
 
@@ -48,11 +49,13 @@ class YelpDF(pd.DataFrame):
         Plot histrograms of avg star ratings, one plot for each value of the view_by_col
 
         Parameters:
-            view_by_col (string): name of column to segment the data; shows 1 plot for each value
+            view_by_col (string): name of column to segment the data; shows 1 plot for each value.
             filter_by (tuple): Used to filter the data for plotting, e.g., filter_by=('Restaurant', [True]) will
                 only plot businesses where the Restaurant column=True.  First value of the filter_by tuple is the
                 column name (string) to filter on; second value is a list of values to keep.
-            limit (int): Max number of plots to show (will show top x frequent unique values of view_by_col)
+            limit (int): Max number of plots to show (will show top x frequent unique values of view_by_col).
+            bins (int), color (str): Parameters to pass into the histogram plotting function.
+            title (str): Title for the plot and used as the filename if saving the plot.
             save (boolean): If true, will save the figure as a png file in the images folder.
         '''
 
@@ -95,12 +98,14 @@ class YelpDF(pd.DataFrame):
         Plot histrograms of review counts, one plot for each value of the view_by_col.
 
         Parameters:
-            view_by_col (string): name of column to segment the data; shows 1 plot for each value
+            view_by_col (string): name of column to segment the data; shows 1 plot for each value.
             filter_by (tuple): Used to filter the data for plotting, e.g., filter_by=('Restaurant', [True]) will
                 only plot businesses where the Restaurant column=True.  First value of the filter_by tuple is the
                 column name (string) to filter on; second value is a list of values to keep.
-            limit (int): Max number of plots to show (will show top x frequent unique values of view_by_col)
+            limit (int): Max number of plots to show (will show top x frequent unique values of view_by_col).
             cutoff (int): Only include businesses with fewer reviews than the cutoff in the plot, for viewability.
+            color (str): Color to pass into the histogram plotting function.
+            title (str): Title for the plot and used as the filename if saving the plot.
             save (boolean): If true, will save the figure as a png file in the images folder.
         '''
         cutoff_data = self[self[self.review_count_col] < cutoff]

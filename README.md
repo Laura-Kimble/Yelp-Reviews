@@ -1,8 +1,5 @@
 # Yelp-Reviews
 
-<div style="text-align:center"><img src="images/Yelp_dataset.png" /></div>
-
-<div style="text-align:center"><img src="images/Yelp_dataset_mini.png" /></div>
 
 ## Project Question / Goal
 
@@ -12,32 +9,34 @@ Yelp.com is a website that allows people to give a star rating of 1-5 for local 
 
 I'm also interested to see if types of businesses vary b
 
-Yelp provides <a href="https://www.yelp.com/dataset">an open dataset</a> for academic/research purposes, available as downloadable .json files.  It includes a subset of Yelp businesses, reviews, users, photos, "tips", and "check-ins" across 10 metro areas in the U.S. and Canada, over the years 2004-2014.  For this project, I focused on the businesses and users data, investigating average star ratings and review counts across various attributes of the businesses.
-
 
 ## Data Description
+
+Yelp provides <a href="https://www.yelp.com/dataset">an open dataset</a> for academic/research purposes, available as downloadable .json files.  It includes a subset of Yelp businesses, reviews, users, photos, "tips", and "check-ins" across 10 metro areas in the U.S. and Canada, over the years 2004-2014.  For this project, I focused on the businesses and users data, investigating average star ratings and review counts across various attributes of the businesses.
+
+<div style="text-align:center"><img src="images/Yelp_dataset.png" /></div>
 
 The Yelp data is provided in .json files, one file each for businesses, users, and reviews.  There are 192,609 businesses and 1,637,138 users.  I initially wanted to also include the review data in my analysis (6M+ reviews), but for this exploratory data analysis project I excluded it.
 
 The users data schema (in json) was flat, however the businesses schema included heirarchial structures for the attributes that needed to be flattened in order to work with them efficiently.  Also, the 'categories' column for businesses lists all of the categories that apply to a business (e.g., one business could have Restaurant, Chinese, Bar, etc.) so to get the top most frequently used categories I had to split these out.  The json files were read into Spark dataframes.
 
-Lastly, I subsetted the businesses and user data to only businesses with at least 100 reviews and only users with at least 200 reviews.  I used this as a proxy to look at 'established' businesses and frequent Yelp users, and also served to reduce the size of the data frames so they could be converted to pandas.  This left me with 13,124 businesses and 30,788 users.
+Lastly, I subsetted the businesses and user data to only businesses with at least 100 reviews and only users with at least 300 reviews.  I used this as a proxy to look at 'established' businesses and frequent Yelp users, and also served to reduce the size of the data frames so they could be converted to pandas.  This left me with 13,124 businesses and 30,788 users.
 
 
 ## Exploratory Data Analysis
 
-For this EDA project, I wanted to look primarily at the distribution of star ratings for different business and user attributes.  Every business and user has an "average star rating" that is the average of all ratings for that business/user.  Since I only included businesses and users with a substantial number of reviews, these average ratings should be representative for the business/user, and not include, for example, a 2-star business with only five reviews.
+For this EDA project, I wanted to look at the characteristics of the businesses in the dataset, and focus on the distribution of star ratings for different business and user attributes.  Every business and user has an "average star rating" that is the average of all ratings for that business/user.  Since I only included businesses and users with a substantial number of reviews, these average ratings should be representative for the business/user, and not include, for example, a 2-star business with only five reviews.  I was interested in seeing if the average rating distributions vary for certain attributes or locations.
 
 
 ## Overview of the businesses
 
-I started out by getting a picture of the businesses in the dataset, including locations, types of businesses, number of reviews for each, etc.
+I started out by getting a picture of the businesses in the dataset, including categories of businesses, number of reviews for each, and geographic locations.
 
 This chart shows the top 10 most frequent categories for the businesses.  Unsurprisingly, 'Restaurant' is by far the most frequent category, followed by 'Food', 'Nightlife' and 'Bar'.  Remember that a business can be assigned multiple categories, and many businesses fall into multiple categories.
 
 <div style="text-align:center"><img src="images/Top 10 business categories.png" /></div>
 
-Next I looked at the number of reviews each business has.  Since I only included businesses with at least 100 reviews, businesses with fewer than this (which is the large majority of businesses in the original dataset) are not shown.  Also, you can see that the number of reviews per business falls off very sharply, with few businesses having more than 500 reviews.
+Next I looked at the number of reviews each business has.  Since I only included businesses with at least 100 reviews, businesses with fewer than this (which is the large majority of businesses in the original dataset) are not shown.  Also, you can see that the number of reviews per business falls off very sharply, with few businesses having more than 500 reviews.  Note that there are businesses with more than 2000 reviews in the data, but these are not included in the chart.
 
 <div style="text-align:center"><img src="images/Review Counts for Businesses.png" /></div>
 
@@ -64,6 +63,8 @@ Then I looked at the star ratings by city (for the top 5 cities with the most bu
 
 <div style="text-align:center"><img src="images/Star Distributions by city.png" /></div>
 
+I also compared ratings distributions by other business attributes -- whether the business allows dogs, for restaurants whether they have outdoor seating, allow smoking, BYOB, etc.  But none of these comparisons showed any interesting variation so the charts are not included.
+
 Finally, I looked how the number of reviews for a buiness is associated with its average star rating.  This chart shows that the businesses with the most reviews have ratings between 2.5 and 4.5 stars, and that the more reviews a business gets, the more it tends towards 3.5-4 star average (the mean of the averages is 3.77).
 
 <div style="text-align:center"><img src="images/Avg. Star Rating vs. Number of Reviews.png" /></div>
@@ -74,27 +75,38 @@ If you want to use your bitcoin, go to Vegas.
 
 
 ## Mapping businesses
+
+I used the folium library to geographically map the businesses.  I focused on two cities: Las Vegas, NV and Charlotte, NC.
+
+For Vegas, I created heatmaps to visualize where the concentration of businesses are.  This first map shows all of the businesses in the data that are in Vegas and the surrounding areas.  The bright red section in the middle is the commonly known "Vegas strip", and the smaller red dot north of there is Downtown Vegas.
+
 <div style="text-align:center"><img src="images/vegas_businesses_heatmap.png" /></div>
+
+I also created some map layers to see different types of businesses on the heatmap.  For instance, here is a visualization of the Chinese restaurants in Vegas.  Surprise!  They are concentrated in Chinatown, as well as on the strip.
+
+<div style="text-align:center"><img src="images/vegas_map_chinese.png" /></div>
+
+For Charlotte, I used folium's CircleMarker function to map each business as a colored dot on the map with a click-able pop-up showing the name, average stars, and number of reviews.  On this map, I created a different-colored dot layer for the top 4 business categories: Restaurant (red), Food (orange), Nightlife (blue), and Bars (purple).  This map helps highlight the "popular" areas of Charlotte (at least according to Yelp reviews): downtown, South End, and some surrounding areas.
 
 <div style="text-align:center"><img src="images/Charlotte_businesses.png" /></div>
 
+I also adjusted the opacity of the dots based on the business' average rating; this is easier to see when viewing one layer at a time.  Here we see the restaurants in Charlotte with the brightest/darkest red dots being the highest rated, and the paler dots having lower average ratings.  I didn't notice any particular patterns or concentration of highly rated businesses in Charlotte in any of the category layers (Restaurants, Food, Bars, Nightlife).  Given more time, it might be interesting to look at this in other cities and/or across more business categories or attributes.
+
+<div style="text-align:center"><img src="images/charlotte_map_restaurants.png" /></div>
+
+
+
 # USERS
 
-USERS:
-1637138 users
+For the over 30K users in the dataset with at least 200 reviews, I did some initial exploratory analysis.
 
-If we only look at users with at least 200 reviews, this decreases the number of users to 30788.
-
-
-## Average star rating distribution
+As with the businesses, each user as an average star rating.  Unlike the businesses however, a user's star rating is a true average (not just half-stars) and can be any value between 1.0 and 5.0.  Unsurprisingly, most users have an average rating between 3.5 and 4.5 stars.  The mean user average is 3.78, which is very close to the mean business average of 3.77.  However the user averages have a narrower distribution with a standard deviation of 0.31, compared to the businesses 0.63.  This makes sense; businesses may be "great" or "not so great" and have average ratings above or below the norm, but very few users are likely to over- or under-rate things consistently.
 
 <div style="text-align:center"><img src="images/User Avg. Star Ratings.png" /></div>
 
-## Review counts distribution
+Lastly, I looked at the distribution of number of reviews per user (for users with between 300 and 2000 reviews).  This also drops off sharply, similar to the review counts for businesses.
 
 <div style="text-align:center"><img src="images/User Review Counts.png" /></div>
-
-
 
 
 ## Future Analysis

@@ -69,6 +69,11 @@ if __name__ == '__main__':
     plot_stars_violin(businesses_df, 'city', top_5_cities, save=True)
     plot_stars_violin(businesses_df, 'Restaurant', [True, False], save=True)
 
+    # Star rating comparisons for other business attributes
+    businesses_df.plot_stars_hist(view_by_col='DogsAllowed', title='Star Ratings for Allows Dogs', save=False)
+    businesses_df.plot_stars_hist(view_by_col='BYOB', filter_by=('Restaurant', [True]), title='Star Ratings for BYOB', save=False)
+    businesses_df.plot_stars_hist(view_by_col='OutdoorSeating', filter_by=('Restaurant', [True]), title='Star Ratings for BYOB', save=False)
+
     # Plot histograms for users
     users_df.plot_stars_hist(bins=20, title='User Avg. Star Ratings', save=True)
     users_df.plot_review_counts_hist(cutoff=2000, title='User Review Counts', save=True)
