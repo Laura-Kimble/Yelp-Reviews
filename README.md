@@ -161,9 +161,22 @@ If you want to use your bitcoin, go to Vegas.
 
 <div style="text-align:center"><img src="images/Charlotte_businesses.png" /></div>
 
+# USERS
 
 USERS:
 1637138 users
+
+If we only look at users with at least 200 reviews, this decreases the number of users to 30788.
+
+
+## Average star rating distribution
+
+<div style="text-align:center"><img src="images/Star Ratings Overall.png" /></div>
+
+## Review counts distribution
+
+<div style="text-align:center"><img src="images/Review Counts Overall.png" /></div>
+
 
 user_id, average_stars, elite, review_count, yelping_since
 

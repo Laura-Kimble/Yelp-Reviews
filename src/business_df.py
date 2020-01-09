@@ -6,11 +6,11 @@ plt.rcParams.update({'font.size': 14})
 import yelp_plots as yplt
 
 
-class BusinessDF(pd.DataFrame):
-    def __init__(self, df):
+class YelpDF(pd.DataFrame):
+    def __init__(self, df, star_rating_col_name, review_count_col_name):
         super().__init__(df)
-        self.stars_col = 'stars'
-        self.review_count_col = 'review_count'
+        self.stars_col = star_rating_col_name
+        self.review_count_col = review_count_col_name
 
 
     def plot_value_counts_bar(self, col_name, filter_by=(), save=False):
@@ -28,16 +28,16 @@ class BusinessDF(pd.DataFrame):
         if filter_by:
             col, vals = filter_by
             filtered = self[self[col].isin(vals)]
-            legend_label = f'count of businesses where {col} is in {vals}'
+            legend_label = f'count where {col} is in {vals}'
         else:
             filtered = self
-            legend_label = 'count of businesses'
+            legend_label = 'count'
 
 
         data = filtered[col_name].value_counts()[0:10]
         labels = data.index
-        title = f'Number of Businesses by {col_name}'
-        x_label = 'number of businesses'
+        title = f'Frequency by {col_name}'
+        x_label = 'number of rows'
         y_label = f'{col_name}'
 
         yplt.plot_barh(labels, data, title=title, x_label=x_label, y_label=y_label, legend_label=legend_label, save=save)
@@ -113,7 +113,7 @@ class BusinessDF(pd.DataFrame):
             filtered = cutoff_data[cutoff_data[col].isin(vals)]
             legend_label = f'review counts where {col} is in {vals}'
         else:
-            filtered = self
+            filtered = cutoff_data
             legend_label = 'review counts'
         
         if view_by_col:
@@ -127,6 +127,7 @@ class BusinessDF(pd.DataFrame):
                 ax = axs[idx]
                 ax.hist(review_count_data, bins=20, label=legend_label)
                 ax.set_xlabel('review counts')
+                ax.set_xlim(0, cutoff)
                 ax.set_title(f'{label}')
                 ax.legend()
 
@@ -136,6 +137,7 @@ class BusinessDF(pd.DataFrame):
             fig, ax = plt.subplots(1, 1, figsize=(8, 4))
             review_count_data = filtered[self.review_count_col]
             ax.hist(review_count_data, bins=20)
+            ax.set_xlim(0, cutoff)
             title = 'Review Counts Overall'
             ax.set_title(title)
 
@@ -143,7 +145,3 @@ class BusinessDF(pd.DataFrame):
 
         if save:
             fig.savefig(f'../images/{title}.png')
-
-
-if __name__ == '__main__':
-    businesses_df = pd.read_pickle('../data/pickled_businesses_df')

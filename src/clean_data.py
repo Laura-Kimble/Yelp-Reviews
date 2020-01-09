@@ -3,7 +3,7 @@ import json as js
 import pyspark.sql.functions as F
 from pyspark.sql.types import *
 import pandas as pd
-import business_df as bd
+import business_df as ydf
 
 def set_up_spark_env(appname):
     ''' Set up spark environment and return the spark session and context.'''
@@ -59,6 +59,13 @@ def subset_businesses(df, n=100):
     return subset_df
 
 
+def subset_users(user_df, n=50):
+    ''' Subset the users df to only users with at least n reviews.'''
+
+    subset_df = user_df.filter(user_df.review_count >= n)
+    return subset_df
+
+
 def get_counts_in_string_col(df, col_name):
     ''' Take a column in a df that is a string of words separated by commas
     (e.g., 'categories' column might have a row that is 'Restaurant, Chinese, Food'),
@@ -97,10 +104,10 @@ if __name__ == '__main__':
     business_df = read_json_to_df('../../data/yelp_dataset/business.json')
     business_df_flat = flatten_df(business_df)
     business_df_flat_subset = subset_businesses(business_df_flat, 100)
-
     category_counts = get_counts_in_string_col(business_df_flat_subset, 'categories')
 
-    # user_df = read_json_to_df('../../data/yelp_dataset/user.json')
+    user_df = read_json_to_df('../../data/yelp_dataset/user.json')
+    user_df_subset = subset_users(user_df, 300)
 
     # review_df = read_json_to_df('../../data/yelp_dataset/review.json')
     # review_df = review_df.withColumn('date', F.to_date(review_df.date, 'yyyy-MM-dd'))
@@ -108,14 +115,16 @@ if __name__ == '__main__':
     # Convert spark df's to pandas df's for plotting
     businesses = business_df_flat_subset.select('*').toPandas()
     category_counts = category_counts.select('*').toPandas()
-    # users = user_df.select('*').toPandas()
+    users = user_df_subset.select('*').toPandas()
     # reviews = review_df.select('*').toPandas()
 
-
-    businesses_df = bd.BusinessDF(businesses)
+    #businesses_df = ydf.YelpDF(businesses, 'stars', 'review_count')
     businesses_df['Restaurant'] = businesses_df['categories'].str.contains(pat='Restaurant')
+
+    #users_df = ydf.YelpDF(users, 'average_stars', 'review_count')
 
     # save to pickle files
     businesses_df.to_pickle('../data/pickled_businesses_df')
     category_counts.to_pickle('../data/pickled_category_counts')
+    users_df.to_pickle('../data/pickled_user_df')
 
