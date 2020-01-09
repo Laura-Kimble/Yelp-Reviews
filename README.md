@@ -3,11 +3,7 @@
 
 ## Project Question / Goal
 
-Rating websites that allow users to provide numerical ratings of movies, restaurants, products, etc. can be helpful to consumers, however often times the ratings seem to center around a certain number, e.g., 
-
-<a href="https://www.yelp.com">Yelp.com</a> is a website that allows people to give a star rating of 1-5 for local businesses they've visited - including restaurants, shops, bars, mechanics, etc.  As a frequent user and contributer on Yelp.com, I'm interested in the distribution of these ratings, and how they may vary across cities, types of businesses, users, etc.  It seems that ratings tend to center around ~4 stars, and most businesses have an average star rating of 3.5 to 4.5 stars.
-
-I'm also interested to see if types of businesses vary b
+<a href="https://www.yelp.com">Yelp.com</a> is a website that allows people to give a rating of 1-5 stars for local businesses they've visited - including restaurants, shops, bars, mechanics, etc.  As a frequent user and contributer on Yelp.com, I'm interested in the distribution of these ratings, and how they may vary across cities, types of businesses, business attributes, and types of users.  It seems that ratings tend to center around ~4 stars, and most businesses have an average star rating of 3.5 to 4.5 stars.  I looked for exceptions to this -- types of businesses that have a different distribution of average ratings.  I also wanted to explore the businesses on maps to see if any patterns emerged.
 
 
 ## Data Description
@@ -50,11 +46,6 @@ To see all of the metro areas geographically, I made a heatmap of the businesses
 
 <div style="text-align:center"><img src="images/10_metro_areas_heatmap.png" width="800"/></div>
 
-As an aside, I looked at several of the business attributes across cities.  One that I found interesting was businesses that accept Bitcoin. 
-If you want to use your bitcoin, go to Vegas.
-<div style="text-align:center"><img src="images/Businesses that Accept Bitcoin by City.png" /></div>
-
-
 
 
 ### Looking at average star ratings
@@ -71,16 +62,16 @@ Then I looked at the star ratings by city (for the top 5 cities with the most bu
 
 <div style="text-align:center"><img src="images/Star Distributions by city.png" /></div>
 
-I also compared ratings distributions by other business attributes -- whether the business allows dogs, for restaurants whether they have outdoor seating, allow smoking, BYOB, etc.  But none of these comparisons showed any interesting variation so the charts are not included.
+I also compared ratings distributions by other business attributes -- whether the business allows dogs, restaurants that have outdoor seating vs. not, allow smoking, BYOB, etc.  But none of these comparisons showed any interesting variation so the charts are not included.
 
-Finally, I looked how the number of reviews for a buiness is associated with its average star rating.  This chart shows that the businesses with the most reviews have ratings between 2.5 and 4.5 stars, and that the more reviews a business gets, the more it tends towards 3.5-4 star average (the mean of the averages is 3.77).
+Finally, I looked at how the number of reviews for a buiness is associated with its average star rating.  This chart shows that the businesses with the most reviews have ratings between 2.5 and 4.5 stars, and that the more reviews a business gets, the more it tends towards 3.5-4 star average (the mean of the averages is 3.77).
 
 <div style="text-align:center"><img src="images/Avg. Star Rating vs. Number of Reviews.png" /></div>
 
 
 ### Mapping businesses
 
-I used the folium library to geographically map the businesses.  I focused on two cities: Las Vegas, NV and Charlotte, NC.
+I used the folium library to geographically map the businesses.  I focused on two cities: Las Vegas, NV and Charlotte, NC.  I chose Vegas since it has the most businesses in the dataset, is a place I've visited several times, and I'd expect may be different than other cities given that it attracts a lot of tourist.  Charlotte, by contrast, has fewer businesses in the data, is a place I've never visited, is in a different part of the country, and I'd expect to have a larger proportion of locals than Vegas.
 
 For Vegas, I created heatmaps to visualize where the concentration of businesses are.  This first map shows all of the businesses in the data that are in Vegas and the surrounding areas.  The bright red section in the middle is the commonly known "Vegas strip", and the smaller red dot north of there is Downtown Vegas.
 
@@ -115,3 +106,9 @@ Lastly, I looked at the distribution of number of reviews per user (for users wi
 
 
 ## Future Analysis
+
+With more time, I would have liked to investigate rating variation across users more deeply.  I'd like to look at the rate distributions for each individual user -- users that rate everything 4 or 5 stars don't provide as much useful information on businesses as users who use the full 1-5 stars.  It may be interesting to identify "discerning" users, i.e., users with a wider distribution of ratings, and see how businesses' average star ratings may change if we only include reviews from these users.  I'd expect to see a wider distribution of businesses' average star ratings.
+
+Conversely, it may be interesting to compare rating distributions for each business.  Some 4-star businesses may have a narrow distribution, indicating a place that most people find good but not outstanding, while other 4-star businesses may be "love 'em or hate 'em" type of places.
+
+There is a lot more to the Yelp dataset as well that could inspire many projects.  The review data is ripe for text analysis and NLP, and image processing could be applied to the photos.  In addition there are "check-ins" (when a user says they are currently at a business) and "tips" (short words of advice a user can give on a business), that could be interesting to explore.
