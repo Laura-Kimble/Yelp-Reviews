@@ -61,7 +61,7 @@ if __name__ == '__main__':
     plot_barh(x, y, title=title, color=category_colors, save=True)
 
     # Plot histrograms businesses
-    businesses_df.plot_stars_hist(title='Avg. Star Ratings for Businesses', save=True)
+    businesses_df.plot_stars_hist(bins=9, title='Avg. Star Ratings for Businesses', save=True)
     businesses_df.plot_review_counts_hist(cutoff=2000, title='Review Counts for Businesses', save=True)
 
     # Violin plots for businesses
