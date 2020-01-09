@@ -56,7 +56,7 @@ Next, I looked at the average star rating distributions for the businesses.  A b
 
 Next, I compared the average ratings of restaurants to other 'non-restaurant' types of businesses.  This does show variation in the ratings distributions, with many more "other" businesses having 4.5 and 5-star ratings.  From my experience on Yelp.com, I do see this pattern -- a flower shop or mechanic is more likely to have a 5-star rating, while restaurants seem to be mostly in the range of 3.5 to 4.5 stars.
 
-<div style="text-align:center"><img src="images/Avg. Star Ratings of Restaurant vs. Other business types.png" /></div>
+<div style="text-align:center"><img src="images/Ratings of Restaurant vs. Other business types.png" /></div>
 
 Then I looked at the star ratings by city (for the top 5 cities with the most businesses).  This also shows variation, with Phoenix and Las Vegas having higher average ratings, and Toronto having substantially lower ratings.  In a future analysis, it may be interesting to compare other aspects of these cities (sunshine index, happiness, # of tourists vs. locals, income) to see if any of these variables may be associated with the variation in yelp ratings.
 

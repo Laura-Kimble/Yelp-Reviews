@@ -86,7 +86,7 @@ if __name__ == '__main__':
     ax.scatter(x, y, color=stars_color)
     ax.set_xlabel('avg star rating')
     ax.set_ylabel('number of reviews')
-    title = 'Avg. Star Rating vs. \n Number of Reviews'
+    title = 'Avg. Star Rating vs. Number of Reviews'
     ax.set_title(title)
     plt.tight_layout(pad=2)
     fig.savefig(f'../images/{title}.png')
