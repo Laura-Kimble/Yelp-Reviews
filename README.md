@@ -81,10 +81,13 @@ For Vegas, I created heatmaps to visualize where the concentration of businesses
 I also created some map layers to see different types of businesses on the heatmap.  For instance, here is a visualization of the Chinese restaurants in Vegas.  Surprise!  They are concentrated in Chinatown, as well as on the strip.
 
 <div style="text-align:center"><img src="images/vegas_map_chinese.png" width="800"/></div>
-
+  
+  
 For Charlotte, I used folium's CircleMarker function to map each business as a colored dot on the map with a click-able pop-up showing the name, average stars, and number of reviews.  On this map, I created a different-colored dot layer for the top 4 business categories: Restaurant (red), Food (orange), Nightlife (blue), and Bars (purple).  This map helps highlight the "popular" areas of Charlotte (at least according to Yelp reviews): downtown, South End, and some surrounding areas.
+  
 
 <div style="text-align:center"><img src="images/Charlotte_businesses.png" width="800"/></div>
+  
 
 I also adjusted the opacity of the dots based on the business' average rating; this is easier to see when viewing one layer at a time.  Here we see the restaurants in Charlotte with the brightest/darkest red dots being the highest rated, and the paler dots having lower average ratings.  I didn't notice any particular patterns or concentration of highly rated businesses in Charlotte in any of the category layers (Restaurants, Food, Bars, Nightlife).  Given more time, it might be interesting to look at this in other cities and/or across more business categories or attributes.
 
