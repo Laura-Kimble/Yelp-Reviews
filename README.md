@@ -88,7 +88,7 @@ For Charlotte, I used folium's CircleMarker function to map each business as a c
 
 <div style="text-align:center"><img src="images/Charlotte_businesses.png" width="800"/></div>
   
-
+  
 I also adjusted the opacity of the dots based on the business' average rating; this is easier to see when viewing one layer at a time.  Here we see the restaurants in Charlotte with the brightest/darkest red dots being the highest rated, and the paler dots having lower average ratings.  I didn't notice any particular patterns or concentration of highly rated businesses in Charlotte in any of the category layers (Restaurants, Food, Bars, Nightlife).  Given more time, it might be interesting to look at this in other cities and/or across more business categories or attributes.
 
 <div style="text-align:center"><img src="images/charlotte_map_restaurants.png" width="800"/></div>
