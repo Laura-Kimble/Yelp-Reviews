@@ -60,41 +60,18 @@ if __name__ == '__main__':
     title = 'Top 10 business categories'
     plot_barh(x, y, title=title, color=category_colors, save=True)
 
+    # Plot histrograms businesses
+    businesses_df.plot_stars_hist(title='Avg. Star Ratings for Businesses', save=True)
+    businesses_df.plot_review_counts_hist(cutoff=2000, title='Review Counts for Businesses', save=True)
+
     # Violin plots for businesses
     top_5_cities = businesses_df['city'].value_counts()[0:5].index
     plot_stars_violin(businesses_df, 'city', top_5_cities, save=True)
     plot_stars_violin(businesses_df, 'Restaurant', [True, False], save=True)
 
     # Plot histograms for users
-    users_df.plot_stars_hist(save=True)
-    users_df.plot_review_counts_hist(cutoff=2000, save=True)
-
-    # Plot average star ratings hist for businesses
-    ax = businesses_df['stars'].hist(bins=8)
-    ax.set_title('Average Star Rating: Distribution for All Businesses')
-    ax.set_xlabel('avg. stars')
-    ax.set_ylabel('count of businesses')
-
-    fig = ax.figure
-    fig.set_size_inches(8, 5)
-    fig.tight_layout(pad=1)
-    fig.savefig('../images/Overall_stars_hist.png')
-
-
-    # Plot overall review counts histogram.
-    cutoff = 2000   # Only include businesses with fewer than this many reviews
-    data = businesses_df[businesses_df['review_count'] < cutoff]['review_count']
-    ax = data.hist(bins=20)
-    ax.set_title('Review Counts: All Businesses')
-    ax.set_xlabel('review count')
-    ax.set_ylabel('count of businesses')
-    ax.set_xlim(0, cutoff)
-
-    fig = ax.figure
-    fig.set_size_inches(8, 5)
-    fig.tight_layout(pad=1)
-    fig.savefig('../images/Overall_reviewCounts_hist.png')
-
+    users_df.plot_stars_hist(bins=20, title='User Avg. Star Ratings', save=True)
+    users_df.plot_review_counts_hist(cutoff=2000, title='User Review Counts', save=True)
 
     # Scatter plot of the average star rating vs. number of reviews (for businesses with between 100-5000 reviews)
     fig, ax = plt.subplots()

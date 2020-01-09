@@ -43,7 +43,7 @@ class YelpDF(pd.DataFrame):
         yplt.plot_barh(labels, data, title=title, x_label=x_label, y_label=y_label, legend_label=legend_label, color=color, save=save)
         
 
-    def plot_stars_hist(self, view_by_col='', filter_by=(), limit=10, color='orange', save=False):
+    def plot_stars_hist(self, view_by_col='', filter_by=(), limit=10, bins=8, color='orange', title='Star Ratings', save=False):
         '''
         Plot histrograms of avg star ratings, one plot for each value of the view_by_col
 
@@ -73,18 +73,15 @@ class YelpDF(pd.DataFrame):
                 data = filtered[filtered[view_by_col]==label]
                 stars_data = data[self.stars_col]
                 ax = axs[idx]
-                ax.hist(stars_data, bins=8, label=legend_label, color=color)
+                ax.hist(stars_data, bins=bins, label=legend_label, color=color)
                 ax.set_xlabel('avg. star rating')
                 ax.set_title(f'{label}')
                 ax.legend()
-
-            title = f'Star Ratings by {view_by_col}'
-
         else:
             fig, ax = plt.subplots(1, 1, figsize=(8, 4))
             stars_data = filtered[self.stars_col]
-            ax.hist(stars_data, bins=8, color=color)
-            title = 'Star Ratings Overall'
+            ax.hist(stars_data, bins=bins, color=color)
+            ax.set_xlabel('avg. star rating')
             ax.set_title(title)
 
         plt.tight_layout(pad=2)
@@ -93,7 +90,7 @@ class YelpDF(pd.DataFrame):
             fig.savefig(f'../images/{title}.png')
 
 
-    def plot_review_counts_hist(self, view_by_col='', filter_by=(), limit=10, cutoff=5000, color='black', save=False):
+    def plot_review_counts_hist(self, view_by_col='', filter_by=(), limit=10, cutoff=5000, color='black', title='Review Counts', save=False):
         ''' 
         Plot histrograms of review counts, one plot for each value of the view_by_col.
 
@@ -130,15 +127,12 @@ class YelpDF(pd.DataFrame):
                 ax.set_xlim(0, cutoff)
                 ax.set_title(f'{label}')
                 ax.legend()
-
-            title = f'Review Counts by {view_by_col}'
-
         else:
             fig, ax = plt.subplots(1, 1, figsize=(8, 4))
             review_count_data = filtered[self.review_count_col]
             ax.hist(review_count_data, bins=20, color=color)
             ax.set_xlim(0, cutoff)
-            title = 'Review Counts Overall'
+            ax.set_xlabel('review counts')
             ax.set_title(title)
 
         plt.tight_layout(pad=2)

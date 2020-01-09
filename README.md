@@ -35,7 +35,7 @@ But then some like Ambience, BusinessParking, etc. are strings that look like di
 
 <div style="text-align:center"><img src="images/Top 10 business categories.png" /></div>
 
-<div style="text-align:center"><img src="images/Overall_reviewCounts_hist.png" /></div>
+<div style="text-align:center"><img src="images/Review Counts for Businesses.png" /></div>
 
 <div style="text-align:center"><img src="images/Number of Businesses by city.png" /></div>
 
@@ -44,11 +44,11 @@ But then some like Ambience, BusinessParking, etc. are strings that look like di
 
 ## Looking at average star ratings
 
-<div style="text-align:center"><img src="images/Overall_stars_hist.png" /></div>
+<div style="text-align:center"><img src="images/Avg. Star Ratings for Businesses.png" /></div>
 
-<div style="text-align:center"><img src="images/Star Distributions for Top 5 Cities violin.png" /></div>
+<div style="text-align:center"><img src="images/Star Distributions by city.png" /></div>
 
-<div style="text-align:center"><img src="images/Star Ratings by Restaurant.png" /></div>
+<div style="text-align:center"><img src="images/Avg. Star Ratings of Restaurant vs. Other business types.png" /></div>
 
 
 <div style="text-align:center"><img src="images/Avg. Star Rating vs. Number of Reviews.png" /></div>
@@ -73,11 +73,11 @@ If we only look at users with at least 200 reviews, this decreases the number of
 
 ## Average star rating distribution
 
-<div style="text-align:center"><img src="images/Star Ratings Overall.png" /></div>
+<div style="text-align:center"><img src="images/User Avg. Star Ratings.png" /></div>
 
 ## Review counts distribution
 
-<div style="text-align:center"><img src="images/Review Counts Overall.png" /></div>
+<div style="text-align:center"><img src="images/User Review Counts.png" /></div>
 
 
 user_id, average_stars, elite, review_count, yelping_since
