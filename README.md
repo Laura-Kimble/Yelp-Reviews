@@ -5,16 +5,18 @@
 
 Rating websites that allow users to provide numerical ratings of movies, restaurants, products, etc. can be helpful to consumers, however often times the ratings seem to center around a certain number, e.g., 
 
-Yelp.com is a website that allows people to give a star rating of 1-5 for local businesses they've visited - including restaurants, shops, bars, mechanics, etc.  As a frequent user and contributer on Yelp.com, I'm interested in the distribution of these ratings, and how they may vary across cities, types of businesses, users, etc.  It seems that ratings tend to center around ~4 stars, and most businesses have an average star rating of 3.5 to 4.5 stars.
+<a href="https://www.yelp.com">Yelp.com</a> is a website that allows people to give a star rating of 1-5 for local businesses they've visited - including restaurants, shops, bars, mechanics, etc.  As a frequent user and contributer on Yelp.com, I'm interested in the distribution of these ratings, and how they may vary across cities, types of businesses, users, etc.  It seems that ratings tend to center around ~4 stars, and most businesses have an average star rating of 3.5 to 4.5 stars.
 
 I'm also interested to see if types of businesses vary b
 
 
 ## Data Description
 
-Yelp provides <a href="https://www.yelp.com/dataset">an open dataset</a> for academic/research purposes, available as downloadable .json files.  It includes a subset of Yelp businesses, reviews, users, photos, "tips", and "check-ins" across 10 metro areas in the U.S. and Canada, over the years 2004-2014.  For this project, I focused on the businesses and users data, investigating average star ratings and review counts across various attributes of the businesses.
+Yelp provides <a href="https://www.yelp.com/dataset">an open dataset</a> for academic/research purposes, available as downloadable .json files.  It includes a subset of Yelp businesses, reviews, users, photos, "tips", and "check-ins" across 10 metro areas in the U.S. and Canada, over the years 2004-2018.  For this project, I focused on the businesses and users data, investigating average star ratings and review counts across various attributes of the businesses.
+
 
 <div style="text-align:center"><img src="images/Yelp_dataset.png" /></div>
+
 
 The Yelp data is provided in .json files, one file each for businesses, users, and reviews.  There are 192,609 businesses and 1,637,138 users.  I initially wanted to also include the review data in my analysis (6M+ reviews), but for this exploratory data analysis project I excluded it.
 
@@ -28,7 +30,7 @@ Lastly, I subsetted the businesses and user data to only businesses with at leas
 For this EDA project, I wanted to look at the characteristics of the businesses in the dataset, and focus on the distribution of star ratings for different business and user attributes.  Every business and user has an "average star rating" that is the average of all ratings for that business/user.  Since I only included businesses and users with a substantial number of reviews, these average ratings should be representative for the business/user, and not include, for example, a 2-star business with only five reviews.  I was interested in seeing if the average rating distributions vary for certain attributes or locations.
 
 
-## Overview of the businesses
+### Overview of the businesses
 
 I started out by getting a picture of the businesses in the dataset, including categories of businesses, number of reviews for each, and geographic locations.
 
@@ -49,7 +51,8 @@ To see all of the metro areas geographically, I made a heatmap of the businesses
 <div style="text-align:center"><img src="images/10_metro_areas_heatmap.png" /></div>
 
 
-## Looking at average star ratings
+
+### Looking at average star ratings
 
 Next, I looked at the average star rating distributions for the businesses.  A business' average star rating is given in half-stars (1.0, 1.5, 2.0, 2.5, etc.).  Not surprisingly, the average ratings center around 4, with very few having an average rating of 3 or less.
 
@@ -74,7 +77,7 @@ If you want to use your bitcoin, go to Vegas.
 <div style="text-align:center"><img src="images/Businesses that Accept Bitcoin by City.png" /></div>
 
 
-## Mapping businesses
+### Mapping businesses
 
 I used the folium library to geographically map the businesses.  I focused on two cities: Las Vegas, NV and Charlotte, NC.
 
