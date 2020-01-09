@@ -1,4 +1,4 @@
-# Yelp-Reviews
+# Yelp Reviews
 
 
 ## Project Question / Goal
@@ -15,7 +15,7 @@ I'm also interested to see if types of businesses vary b
 Yelp provides <a href="https://www.yelp.com/dataset">an open dataset</a> for academic/research purposes, available as downloadable .json files.  It includes a subset of Yelp businesses, reviews, users, photos, "tips", and "check-ins" across 10 metro areas in the U.S. and Canada, over the years 2004-2018.  For this project, I focused on the businesses and users data, investigating average star ratings and review counts across various attributes of the businesses.
 
 
-<div style="text-align:center"><img src="images/Yelp_dataset.png" /></div>
+<div style="text-align:center"><img src="images/Yelp_dataset.png" width="800"/></div>
 
 
 The Yelp data is provided in .json files, one file each for businesses, users, and reviews.  There are 192,609 businesses and 1,637,138 users.  I initially wanted to also include the review data in my analysis (6M+ reviews), but for this exploratory data analysis project I excluded it.
@@ -48,7 +48,12 @@ Lastly in the initial overview, I wanted to see what were the 10 metro areas inc
 
 To see all of the metro areas geographically, I made a heatmap of the businesses.
 
-<div style="text-align:center"><img src="images/10_metro_areas_heatmap.png" /></div>
+<div style="text-align:center"><img src="images/10_metro_areas_heatmap.png" width="800"/></div>
+
+As an aside, I looked at several of the business attributes across cities.  One that I found interesting was businesses that accept Bitcoin. 
+If you want to use your bitcoin, go to Vegas.
+<div style="text-align:center"><img src="images/Businesses that Accept Bitcoin by City.png" /></div>
+
 
 
 
@@ -58,7 +63,7 @@ Next, I looked at the average star rating distributions for the businesses.  A b
 
 <div style="text-align:center"><img src="images/Avg. Star Ratings for Businesses.png" /></div>
 
-Next, I compared the average ratings of restaurants to other 'non-restaurant' types of businesses.  This does show variation in the ratings distributions, with many more "other" businesses having 4.5 and 5-star ratings.  From my experience on Yelp.com, I do this pattern -- a flower shop or mechanic is more likely to have a 5-star rating, while restaurants seem to be mostly in the range of 3.5 to 4.5 stars.
+Next, I compared the average ratings of restaurants to other 'non-restaurant' types of businesses.  This does show variation in the ratings distributions, with many more "other" businesses having 4.5 and 5-star ratings.  From my experience on Yelp.com, I do see this pattern -- a flower shop or mechanic is more likely to have a 5-star rating, while restaurants seem to be mostly in the range of 3.5 to 4.5 stars.
 
 <div style="text-align:center"><img src="images/Avg. Star Ratings of Restaurant vs. Other business types.png" /></div>
 
@@ -73,33 +78,30 @@ Finally, I looked how the number of reviews for a buiness is associated with its
 <div style="text-align:center"><img src="images/Avg. Star Rating vs. Number of Reviews.png" /></div>
 
 
-If you want to use your bitcoin, go to Vegas.
-<div style="text-align:center"><img src="images/Businesses that Accept Bitcoin by City.png" /></div>
-
-
 ### Mapping businesses
 
 I used the folium library to geographically map the businesses.  I focused on two cities: Las Vegas, NV and Charlotte, NC.
 
 For Vegas, I created heatmaps to visualize where the concentration of businesses are.  This first map shows all of the businesses in the data that are in Vegas and the surrounding areas.  The bright red section in the middle is the commonly known "Vegas strip", and the smaller red dot north of there is Downtown Vegas.
 
-<div style="text-align:center"><img src="images/vegas_businesses_heatmap.png" /></div>
+<div style="text-align:center"><img src="images/vegas_businesses_heatmap.png" width="800"/></div>
 
+\
 I also created some map layers to see different types of businesses on the heatmap.  For instance, here is a visualization of the Chinese restaurants in Vegas.  Surprise!  They are concentrated in Chinatown, as well as on the strip.
 
-<div style="text-align:center"><img src="images/vegas_map_chinese.png" /></div>
+<div style="text-align:center"><img src="images/vegas_map_chinese.png" width="800"/></div>
 
 For Charlotte, I used folium's CircleMarker function to map each business as a colored dot on the map with a click-able pop-up showing the name, average stars, and number of reviews.  On this map, I created a different-colored dot layer for the top 4 business categories: Restaurant (red), Food (orange), Nightlife (blue), and Bars (purple).  This map helps highlight the "popular" areas of Charlotte (at least according to Yelp reviews): downtown, South End, and some surrounding areas.
 
-<div style="text-align:center"><img src="images/Charlotte_businesses.png" /></div>
+<div style="text-align:center"><img src="images/Charlotte_businesses.png" width="800"/></div>
 
 I also adjusted the opacity of the dots based on the business' average rating; this is easier to see when viewing one layer at a time.  Here we see the restaurants in Charlotte with the brightest/darkest red dots being the highest rated, and the paler dots having lower average ratings.  I didn't notice any particular patterns or concentration of highly rated businesses in Charlotte in any of the category layers (Restaurants, Food, Bars, Nightlife).  Given more time, it might be interesting to look at this in other cities and/or across more business categories or attributes.
 
-<div style="text-align:center"><img src="images/charlotte_map_restaurants.png" /></div>
+<div style="text-align:center"><img src="images/charlotte_map_restaurants.png" width="800"/></div>
 
 
 
-# USERS
+### Users
 
 For the over 30K users in the dataset with at least 200 reviews, I did some initial exploratory analysis.
 
