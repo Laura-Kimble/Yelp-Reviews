@@ -5,10 +5,15 @@ import business_df as ydf
 plt.style.use('ggplot')
 plt.rcParams.update({'font.size': 14})
 
+# Assign default colors for the types of things to plot
+basic_color = 'black'
+stars_color = 'orange'
+category_colors = ['red', 'orange', 'blue', 'purple', 'green', 'black', 'white', 'c', 'm', 'y']
 
-def plot_barh(x, y, title='', x_label='', y_label='', legend_label='', save=False):
+
+def plot_barh(x, y, title='', x_label='', y_label='', legend_label='', color='black', save=False):
     fig, ax = plt.subplots(1, 1, figsize=(8, 6))
-    ax.barh(x, y)
+    ax.barh(x, y, color=color)
     ax.set_title(title)
     ax.set_xlabel(x_label)
     ax.set_ylabel(y_label)
@@ -19,12 +24,16 @@ def plot_barh(x, y, title='', x_label='', y_label='', legend_label='', save=Fals
         fig.savefig(f'../images/{title}.png')
 
 
-def plot_stars_violin(df, label_col, label_names, save=False):
+def plot_stars_violin(df, label_col, label_names, color=stars_color, save=False):
 
     data = [np.array(df[df[label_col]==lab]['stars']) for lab in label_names]
     
     fig, ax = plt.subplots(1, 1, figsize=(8, 6))
-    ax.violinplot(data, vert=False, widths=0.8)
+    parts = ax.violinplot(data, vert=False, widths=0.8)
+
+    for pc in parts['bodies']:
+        pc.set_facecolor(color)
+
     ax.set_yticks(np.arange(1, len(label_names) + 1))
     ax.set_yticklabels(label_names)
 
@@ -49,11 +58,11 @@ if __name__ == '__main__':
     x = category_counts['elem'][0:10]
     y = category_counts['count'][0:10]
     title = 'Top 10 business categories'
-    plot_barh(x, y, title=title, save=True)
+    plot_barh(x, y, title=title, color=category_colors, save=True)
 
     # Violin plots for businesses
     top_5_cities = businesses_df['city'].value_counts()[0:5].index
-    plot_stars_violin(businesses_df, 'city', top_5_cities, save=False)
+    plot_stars_violin(businesses_df, 'city', top_5_cities, save=True)
     plot_stars_violin(businesses_df, 'Restaurant', [True, False], save=True)
 
     # Plot histograms for users
@@ -92,7 +101,7 @@ if __name__ == '__main__':
     data = businesses_df[businesses_df['review_count']<5000]
     x = data['stars']
     y = data['review_count']
-    ax.scatter(x, y)
+    ax.scatter(x, y, color=stars_color)
     ax.set_xlabel('avg star rating')
     ax.set_ylabel('number of reviews')
     title = 'Avg. Star Rating vs. Number of Reviews'

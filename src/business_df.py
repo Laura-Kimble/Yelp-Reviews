@@ -13,7 +13,7 @@ class YelpDF(pd.DataFrame):
         self.review_count_col = review_count_col_name
 
 
-    def plot_value_counts_bar(self, col_name, filter_by=(), save=False):
+    def plot_value_counts_bar(self, col_name, filter_by=(), color='black', save=False):
         ''' 
         Plot a bar chart of the counts of each value in the specified column (limited to 10 top values).
 
@@ -40,10 +40,10 @@ class YelpDF(pd.DataFrame):
         x_label = 'number of rows'
         y_label = f'{col_name}'
 
-        yplt.plot_barh(labels, data, title=title, x_label=x_label, y_label=y_label, legend_label=legend_label, save=save)
+        yplt.plot_barh(labels, data, title=title, x_label=x_label, y_label=y_label, legend_label=legend_label, color=color, save=save)
         
 
-    def plot_stars_hist(self, view_by_col='', filter_by=(), limit=10, save=False):
+    def plot_stars_hist(self, view_by_col='', filter_by=(), limit=10, color='orange', save=False):
         '''
         Plot histrograms of avg star ratings, one plot for each value of the view_by_col
 
@@ -73,7 +73,7 @@ class YelpDF(pd.DataFrame):
                 data = filtered[filtered[view_by_col]==label]
                 stars_data = data[self.stars_col]
                 ax = axs[idx]
-                ax.hist(stars_data, bins=8, label=legend_label)
+                ax.hist(stars_data, bins=8, label=legend_label, color=color)
                 ax.set_xlabel('avg. star rating')
                 ax.set_title(f'{label}')
                 ax.legend()
@@ -83,7 +83,7 @@ class YelpDF(pd.DataFrame):
         else:
             fig, ax = plt.subplots(1, 1, figsize=(8, 4))
             stars_data = filtered[self.stars_col]
-            ax.hist(stars_data, bins=8)
+            ax.hist(stars_data, bins=8, color=color)
             title = 'Star Ratings Overall'
             ax.set_title(title)
 
@@ -93,7 +93,7 @@ class YelpDF(pd.DataFrame):
             fig.savefig(f'../images/{title}.png')
 
 
-    def plot_review_counts_hist(self, view_by_col='', filter_by=(), limit=10, cutoff=5000, save=False):
+    def plot_review_counts_hist(self, view_by_col='', filter_by=(), limit=10, cutoff=5000, color='black', save=False):
         ''' 
         Plot histrograms of review counts, one plot for each value of the view_by_col.
 
@@ -125,7 +125,7 @@ class YelpDF(pd.DataFrame):
                 data = filtered[filtered[view_by_col]==label]
                 review_count_data = data[self.review_count_col]
                 ax = axs[idx]
-                ax.hist(review_count_data, bins=20, label=legend_label)
+                ax.hist(review_count_data, bins=20, label=legend_label, color=color)
                 ax.set_xlabel('review counts')
                 ax.set_xlim(0, cutoff)
                 ax.set_title(f'{label}')
@@ -136,7 +136,7 @@ class YelpDF(pd.DataFrame):
         else:
             fig, ax = plt.subplots(1, 1, figsize=(8, 4))
             review_count_data = filtered[self.review_count_col]
-            ax.hist(review_count_data, bins=20)
+            ax.hist(review_count_data, bins=20, color=color)
             ax.set_xlim(0, cutoff)
             title = 'Review Counts Overall'
             ax.set_title(title)

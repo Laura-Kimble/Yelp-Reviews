@@ -118,10 +118,10 @@ if __name__ == '__main__':
     users = user_df_subset.select('*').toPandas()
     # reviews = review_df.select('*').toPandas()
 
-    #businesses_df = ydf.YelpDF(businesses, 'stars', 'review_count')
+    businesses_df = ydf.YelpDF(businesses, 'stars', 'review_count')
     businesses_df['Restaurant'] = businesses_df['categories'].str.contains(pat='Restaurant')
 
-    #users_df = ydf.YelpDF(users, 'average_stars', 'review_count')
+    users_df = ydf.YelpDF(users, 'average_stars', 'review_count')
 
     # save to pickle files
     businesses_df.to_pickle('../data/pickled_businesses_df')

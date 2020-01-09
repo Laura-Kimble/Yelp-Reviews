@@ -15,7 +15,6 @@ def create_heatmap_layer(df, base_map, layer_name):
     '''
 
     feature_map = folium.FeatureGroup(name = layer_name)
-    max_amount = float(max_val)
     feature_map.add_child(HeatMap(list(zip(df['latitude'].values, df['longitude'].values)), 
                             min_opacity=0.2,
                             max_val=30,
@@ -27,7 +26,7 @@ def create_heatmap_layer(df, base_map, layer_name):
 
 def create_multiple_dots_layers(df, base_map, layer_names, col_name):
 
-    colors = ['red', 'blue', 'green', 'purple', 'orange', 'black', 'beige']
+    colors = ['red', 'orange', 'blue', 'purple', 'white', 'black', 'beige']
     
     for idx, layer in enumerate(layer_names):
         layer_df = df[df[col_name].str.contains(pat=layer)]
