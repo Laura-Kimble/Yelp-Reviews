@@ -8,7 +8,7 @@ plt.rcParams.update({'font.size': 14})
 # Assign default colors for the types of things to plot
 basic_color = 'black'
 stars_color = 'orange'
-category_colors = ['red', 'orange', 'blue', 'purple', 'green', 'black', 'white', 'c', 'm', 'y']
+category_colors = ['red', 'orange', 'blue', 'purple', 'green', 'black', 'pink', 'c', 'm', 'y']
 
 
 def plot_barh(x, y, title='', x_label='', y_label='', legend_label='', color='black', save=False):
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     ax.scatter(x, y, color=stars_color)
     ax.set_xlabel('avg star rating')
     ax.set_ylabel('number of reviews')
-    title = 'Avg. Star Rating vs. Number of Reviews'
+    title = 'Avg. Star Rating vs. \n Number of Reviews'
     ax.set_title(title)
     plt.tight_layout(pad=2)
     fig.savefig(f'../images/{title}.png')

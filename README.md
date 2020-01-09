@@ -108,6 +108,8 @@ Lastly, I looked at the distribution of number of reviews per user (for users wi
 <div style="text-align:center"><img src="images/User Review Counts.png" /></div>
 
 
+CONCLUSION BLURB
+
 ## Future Analysis
 
 With more time, I would have liked to investigate rating variation across users more deeply.  I'd like to look at the rate distributions for each individual user -- users that rate everything 4 or 5 stars don't provide as much useful information on businesses as users who use the full 1-5 stars.  It may be interesting to identify "discerning" users, i.e., users with a wider distribution of ratings, and see how businesses' average star ratings may change if we only include reviews from these users.  I'd expect to see a wider distribution of businesses' average star ratings.
