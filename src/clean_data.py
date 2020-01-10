@@ -3,7 +3,7 @@ import json as js
 import pyspark.sql.functions as F
 from pyspark.sql.types import *
 import pandas as pd
-import business_df as ydf
+import yelp_df as ydf
 
 def set_up_spark_env(appname):
     ''' Set up spark environment and return the spark session and context.'''

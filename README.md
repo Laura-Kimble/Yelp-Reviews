@@ -30,7 +30,7 @@ For this EDA project, I wanted to look at the characteristics of the businesses 
 
 I started out by getting a picture of the businesses in the dataset, including categories of businesses, number of reviews for each, and geographic locations.
 
-This chart shows the top 10 most frequent categories for the businesses.  Unsurprisingly, 'Restaurant' is by far the most frequent category, followed by 'Food', 'Nightlife' and 'Bar'.  Remember that a business can be assigned multiple categories, and many businesses fall into multiple categories.
+This chart shows the top 10 most frequent categories for the businesses.  Unsurprisingly, 'Restaurant' is by far the most frequent category, followed by 'Food', 'Nightlife' and 'Bar'.  Remember that a business can be assigned multiple categories, and many businesses fall into multiple categories.  The colors in this chart are also used to color the business categories on the Charlotte map below.
 
 <div style="text-align:center"><img src="images/Top 10 business categories.png" /></div>
 

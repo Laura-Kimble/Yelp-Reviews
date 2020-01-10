@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import business_df as ydf
+import yelp_df as ydf
 plt.style.use('ggplot')
 plt.rcParams.update({'font.size': 14})
 
