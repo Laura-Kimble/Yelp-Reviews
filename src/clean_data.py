@@ -94,9 +94,6 @@ def get_counts(df, col_name):
     return df.groupBy(df[col_name]).count().orderBy('count', ascending=False)
 
 
-# Need to clean up some fields in the flat df... nulls, 'True'/'False' strings to boolean..
-# Ambience, BusinessParking, etc, are still stored as strings that look like dicts in a single col: {'romantic': False, 'classy':...}
-
 if __name__ == '__main__':
     spark, sc = set_up_spark_env('yelp_review_analysis')
 
