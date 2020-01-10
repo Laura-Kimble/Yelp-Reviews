@@ -3,7 +3,7 @@
 
 ## Project Question / Goal
 
-<a href="https://www.yelp.com">Yelp.com</a> is a website that allows people to give a rating of 1-5 stars for local businesses they've visited - including restaurants, shops, bars, mechanics, etc.  As a frequent user and contributer on Yelp.com, I'm interested in the distribution of these ratings, and how they may vary across cities, types of businesses, business attributes, and types of users.  It seems that ratings tend to center around ~4 stars, and most businesses have an average star rating of 3.5 to 4.5 stars.  I looked for exceptions to this -- types of businesses that have a different distribution of average ratings.  I also wanted to explore the businesses on maps to see if any patterns emerged.
+<a href="https://www.yelp.com">Yelp.com</a> is a website that allows people to give a rating of 1-5 stars for local businesses they've visited - including restaurants, shops, bars, mechanics, etc.  As a frequent user and contributer on Yelp.com, I'm interested in the distribution of these ratings, and how they may vary across cities, types of businesses, business attributes, and types of users.  It seems that ratings tend to center around ~4 stars, and most businesses have an average star rating of 3.5 to 4.5 stars.  I looked for exceptions to this -- types of businesses that have a different distribution of average ratings.  I also wanted to explore the businesses on maps to see if any patterns emerged.  Since I've spent a lot of time on Yelp.com writing reviews, reading reviews, and exploring businesses, I found it interesting to be able to dive into the data.
 
 
 ## Data Description
@@ -108,7 +108,8 @@ Lastly, I looked at the distribution of number of reviews per user (for users wi
 <div style="text-align:center"><img src="images/User Review Counts.png" /></div>
 
 
-CONCLUSION BLURB
+Through this exploratory analysis project, I confirmed my hunch that review averages center around 3.5 to 4.5 stars with few businesses or users having average ratings outside of this range.  I did find it interesting however that the average rating distributions vary across cities.  It would be interesting to explore this further, and see if there are other factors that correlate with a city's ratings (perhaps factors outside of the yelp data).  I also found it interesting that non-restaurants appear to have higher average ratings and more 5-star businesses as compared to restaurants.  It could be interesting to also explore this further, and look at types of non-restaurant businesses, chains vs. independent businesses, or if this trend also appears on other review sites (e.g., Google reviews).
+
 
 ## Future Analysis
 
